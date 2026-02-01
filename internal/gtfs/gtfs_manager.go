@@ -159,6 +159,12 @@ func (manager *Manager) GetRoutes() []gtfs.Route {
 	return manager.gtfsData.Routes
 }
 
+// SetGtfsSource updates the GTFS source URL. This is primarily used for testing.
+// The next call to ForceUpdate will use this new source.
+func (manager *Manager) SetGtfsSource(source string) {
+	manager.gtfsSource = source
+}
+
 // RoutesForAgencyID retrieves all routes associated with the specified agency ID from the GTFS data.
 // IMPORTANT: Caller must hold manager.RLock() before calling this method.
 func (manager *Manager) RoutesForAgencyID(agencyID string) []*gtfs.Route {
